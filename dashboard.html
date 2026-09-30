@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+```
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>StudyBloom 🎀</title>
+
+<link rel="stylesheet" href="style.css">
+```
+
+</head>
+
+<body>
+
+```
+<!-- ========================= -->
+<!-- NAVIGATION BAR -->
+<!-- ========================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        🌸 StudyBloom
+    </div>
+
+    <div class="nav-links">
+
+        <a href="#home">🏠 Home</a>
+
+        <a href="#subjects">📚 Subjects</a>
+
+        <a href="#tasks">📝 Tasks</a>
+
+        <a href="#timer-section">⏱️ Timer</a>
+
+        <a href="#progress">📈 Progress</a>
+
+        <button onclick="toggleDarkMode()"
+                class="dark-mode-btn">
+            🌙
+        </button>
+<button onclick="logout()"
+        class="logout-btn">
+    🚪 Logout
+</button>
+
+    </div>
+
+</nav>
+
+
+<!-- ========================= -->
+<!-- HOME SECTION -->
+<!-- ========================= -->
+
+<section id="home"
+         class="hero">
+
+    <h1 id="welcomeUser">
+    🌸 Welcome!
+</h1>
+    <p>
+        Let's make today productive! 🌸
+    </p>
+
+    <div class="motivation-box">
+
+        <h3>
+            💬 Today's Motivation
+        </h3>
+
+        <p id="motivation">
+            You can do it! Keep going! 💪🌸
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ========================= -->
+<!-- AI STUDY ASSISTANT -->
+<!-- ========================= -->
+
+<section class="section">
+
+    <h2>🤖 StudyBloom AI Assistant</h2>
+
+    <p class="section-description">
+        Ask me anything about your studies!
+    </p>
+
+    <textarea
+        id="aiQuestion"
+        placeholder="Example: Explain DBMS in simple words..."
+        rows="4">
+    </textarea>
+
+    <br><br>
+
+    <button onclick="askStudyAI()">
+        🤖 Ask StudyBloom AI
+    </button>
+
+    <div id="aiAnswer">
+    </div>
+
+</section>
+
+
+<!-- ========================= -->
+<!-- SUBJECTS SECTION -->
+<!-- ========================= -->
+
+<section id="subjects"
+         class="section">
+
+    <h2>
+        📚 My Subjects
+    </h2>
+
+    <p class="section-description">
+        Select a subject to explore its topics.
+    </p>
+
+
+    <div class="subjects">
+
+
+        <!-- PYTHON CARD -->
+
+        <div class="card"
+             onclick="showSubject('Python')">
+
+            <div class="card-icon">
+                🐍
+            </div>
+
+            <h3>
+                Python
+            </h3>
+
+            <p>
+                Learn Python programming
+                step by step.
+            </p>
+
+        </div>
+
+
+        <!-- DBMS CARD -->
+
+        <div class="card"
+             onclick="showSubject('DBMS')">
+
+            <div class="card-icon">
+                🗄️
+            </div>
+
+            <h3>
+                DBMS
+            </h3>
+
+            <p>
+                Learn database management
+                concepts.
+            </p>
+
+        </div>
+
+
+        <!-- WEB DEVELOPMENT CARD -->
+
+        <div class="card"
+             onclick="showSubject('Web Development')">
+
+            <div class="card-icon">
+                🌐
+            </div>
+
+            <h3>
+                Web Development
+            </h3>
+
+            <p>
+                Learn HTML, CSS and
+                JavaScript.
+            </p>
+
+        </div>
+
+
+        <!-- AI CARD -->
+
+        <div class="card"
+             onclick="showSubject('AI')">
+
+            <div class="card-icon">
+                🤖
+            </div>
+
+            <h3>
+                Artificial Intelligence
+            </h3>
+
+            <p>
+                Learn the basics of
+                Artificial Intelligence.
+            </p>
+
+        </div>
+
+
+        <!-- JAVA CARD -->
+
+        <div class="card"
+             onclick="showSubject('Java')">
+
+            <div class="card-icon">
+                ☕
+            </div>
+
+            <h3>
+                Java
+            </h3>
+
+            <p>
+                Learn Java programming
+                step by step.
+            </p>
+
+        </div>
+
+
+        <!-- SQL CARD -->
+
+        <div class="card"
+             onclick="showSubject('SQL')">
+
+            <div class="card-icon">
+                💻
+            </div>
+
+            <h3>
+                SQL
+            </h3>
+
+            <p>
+                Learn SQL and
+                database queries.
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- SUBJECT TOPICS WILL APPEAR HERE -->
+
+    <div id="subjectInfo"
+         class="subject-info">
+
+        <h3>
+            🌸 Choose a Subject
+        </h3>
+
+        <p>
+            Click on a subject to see
+            the topics.
+        </p>
+
+    </div>
+
+
+</section>
+
+
+<!-- ========================= -->
+<!-- TASK SECTION -->
+<!-- ========================= -->
+
+<section id="tasks"
+         class="section">
+
+    <h2>
+        📝 My Study Tasks
+    </h2>
+
+    <p class="section-description">
+        Add your tasks and complete them
+        one by one.
+    </p>
+
+
+    <div class="task-input-area">
+
+        <input
+            type="text"
+            id="taskInput"
+            placeholder="Enter your study task..."
+        >
+
+        <button onclick="addTask()">
+            ➕ Add Task
+        </button>
+
+    </div>
+
+
+    <!-- TASKS WILL APPEAR HERE -->
+
+    <ul id="taskList"
+        class="task-list">
+    </ul>
+
+
+    <button onclick="clearAllTasks()"
+            class="clear-btn">
+
+        🧹 Clear All Tasks
+
+    </button>
+
+
+</section>
+
+
+<!-- ========================= -->
+<!-- TIMER SECTION -->
+<!-- ========================= -->
+
+<section id="timer-section"
+         class="section timer-section">
+
+    <h2>
+        ⏱️ Study Timer
+    </h2>
+
+    <p class="section-description">
+        Focus for 25 minutes and then
+        take a 5-minute break.
+    </p>
+
+
+    <!-- TIMER DISPLAY -->
+
+    <div id="timer"
+         class="timer">
+
+        25:00
+
+    </div>
+
+
+    <!-- TIMER BUTTONS -->
+
+    <div class="timer-buttons">
+
+        <button onclick="startTimer()">
+            ▶️ Start
+        </button>
+
+        <button onclick="pauseTimer()">
+            ⏸️ Pause
+        </button>
+
+        <button onclick="resetTimer()">
+            🔄 Reset
+        </button>
+
+        <button onclick="startBreak()">
+            ☕ Start Break
+        </button>
+
+    </div>
+
+
+</section>
+
+
+<!-- ========================= -->
+<!-- PROGRESS SECTION -->
+<!-- ========================= -->
+
+<section id="progress"
+         class="section">
+
+    <h2>
+        📈 My Progress
+    </h2>
+
+
+    <div class="progress-card">
+
+
+        <div class="progress-stat">
+
+            <span>
+                🎯 Study Sessions Completed
+            </span>
+
+            <strong id="sessionCount">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="progress-stat">
+
+            <span>
+                📊 Daily Goal
+            </span>
+
+            <strong>
+                4 Sessions
+            </strong>
+
+        </div>
+
+
+        <!-- PROGRESS BAR -->
+
+        <div class="progress-container">
+
+            <div id="progressBar"
+                 class="progress-bar">
+            </div>
+
+        </div>
+
+
+        <p id="progressText"
+           class="progress-text">
+
+            0% Complete
+
+        </p>
+
+
+    </div>
+
+
+</section>
+
+
+<!-- ========================= -->
+<!-- FOOTER -->
+<!-- ========================= -->
+
+<footer>
+
+    <h3>
+        🌸 StudyBloom 🎀
+    </h3>
+
+    <p>
+        Learn • Focus • Grow
+    </p>
+
+    <p>
+        Made with 💖 for productive
+        study sessions.
+    </p>
+
+    <p>
+        © 2026 StudyBloom
+    </p>
+
+</footer>
+
+
+<!-- ========================= -->
+<!-- JAVASCRIPT -->
+<!-- ========================= -->
+
+<script>
+
+if (!localStorage.getItem("loggedInUser")) {
+
+    window.location.href = "login.html";
+
+}
+
+</script>
+
+<script src="script.js"></script>
+```
+
+
+</body>
+
+</html>

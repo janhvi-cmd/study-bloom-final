@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>StudyBloom - Login 🎀</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="auth-container">
+
+        <div class="auth-box">
+
+            <h1>🌸 Welcome Back! 🎀</h1>
+
+            <p>Login to continue your StudyBloom journey.</p>
+
+            <form id="loginForm">
+
+                <label for="username">
+                    Username
+                </label>
+
+                <input
+                    type="text"
+                    id="username"
+                    placeholder="Enter your username"
+                    required
+                >
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter your password"
+                    required
+                >
+
+                <button type="submit">
+                    🔐 Login
+                </button>
+
+            </form>
+
+            <p id="loginMessage"></p>
+
+            <p>
+                Don't have an account?
+                <a href="signup.html">
+                    Sign Up here
+                </a>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    const message = document.getElementById("loginMessage");
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    const user = users.find(function(u) {
+
+        return u.username === username && u.password === password;
+
+    });
+
+    if (user) {
+
+        message.innerHTML = "🎉 Login successful!";
+        message.style.color = "green";
+
+        // Save logged in user
+        localStorage.setItem("loggedInUser", username);
+
+        // Open dashboard
+        setTimeout(function() {
+
+            window.location.href = "dashboard.html";
+
+        }, 1500);
+
+    } else {
+
+        message.innerHTML = "❌ Invalid username or password!";
+        message.style.color = "red";
+
+    }
+
+});
+
+</script>
+
+</body>
+
+</html>

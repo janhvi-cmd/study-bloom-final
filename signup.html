@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StudyBloom - Sign Up 🎀</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="auth-container">
+
+        <div class="auth-box">
+
+            <h1>🌸 Join StudyBloom 🎀</h1>
+
+            <p>Create your account and start learning!</p>
+
+            <form id="signupForm">
+
+                <label for="username">
+                    Username
+                </label>
+
+                <input
+                    type="text"
+                    id="username"
+                    placeholder="Enter your username"
+                    required
+                >
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter your password"
+                    required
+                >
+
+                <button type="submit">
+                    ✨ Create Account
+                </button>
+
+            </form>
+
+            <p id="signupMessage"></p>
+
+            <p>
+                Already have an account?
+                <a href="login.html">
+                    Login here
+                </a>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+    document.getElementById("signupForm").addEventListener("submit", async function(event) {
+
+        event.preventDefault();
+
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        const message = document.getElementById("signupMessage");
+
+        if (username === "" || password === "") {
+
+            message.innerHTML = "❌ Please fill all fields.";
+            message.style.color = "red";
+
+            return;
+        }
+
+        try {
+
+            const response = await fetch("/signup", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    username: username,
+                    email: username + "@studybloom.com",
+                    password: password
+                })
+
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+
+                message.innerHTML = "🎉 Account created successfully!";
+                message.style.color = "green";
+
+                document.getElementById("signupForm").reset();
+
+                setTimeout(function() {
+
+                    window.location.href = "login.html";
+
+                }, 1500);
+
+            } else {
+
+                message.innerHTML = "❌ " + data.message;
+                message.style.color = "red";
+
+            }
+
+        } catch (error) {
+
+            console.log("Signup error:", error);
+
+            message.innerHTML = "❌ Unable to connect to server.";
+            message.style.color = "red";
+
+        }
+
+    });
+
+    </script>
+
+</body>
+
+</html>
